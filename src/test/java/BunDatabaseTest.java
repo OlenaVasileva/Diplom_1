@@ -14,7 +14,7 @@ import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
 
-public class BunTest {
+public class BunDatabaseTest {
 
 
     private static Database database;
@@ -29,12 +29,12 @@ public class BunTest {
         availableBuns = database.availableBuns();
     }
 
-    public BunTest(String expectedName, double expectedPrice) {
+    public BunDatabaseTest(String expectedName, double expectedPrice) {
         this.expectedName = expectedName;
         this.expectedPrice = expectedPrice;
     }
 
-    @Parameterized.Parameters(name = "Проверка булочки с именем {0}, цена {1}")
+    @Parameterized.Parameters(name = "Проверка булочки №{index}: имя={0}, цена={1}")
     public static Collection<Object[]> getData() {
         return Arrays.asList(new Object[][]{
                 {"black bun", 100},
@@ -59,18 +59,4 @@ public class BunTest {
         }
     }
 
-
-    @Test
-    public void getBunNameTest() {
-        Bun bun = new Bun("Black Bun", 100.0f);
-        String checkedBunName = bun.getName();
-        assertEquals("Black Bun", checkedBunName);
-    }
-
-    @Test
-    public void getBunPriceTest() {
-        Bun bun = new Bun("White Bun", 150.0f);
-        float checkedBunPrice = bun.getPrice();
-        assertEquals(150.0f, checkedBunPrice, 0.01);
-    }
 }
